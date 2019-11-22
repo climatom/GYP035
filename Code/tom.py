@@ -141,7 +141,7 @@ def auto_regress(target,predictors,year_predict,days_behind,p_sig,verbose=True):
             in_model+=1
         col+=1
           
-    print("-----------------------------------------------")              
+    if verbose: print("-----------------------------------------------")              
      
     # Truncate X_sim
     X_sim=X_sim[:,:in_model]
@@ -158,11 +158,12 @@ def auto_regress(target,predictors,year_predict,days_behind,p_sig,verbose=True):
     r=(pred["sim"].corr(pred["obs"]))**2
     
     final_model=final_model.strip("+ ")
-            
-    print("\n\n*      *      *     *      *      *")    
-    print("\nModelling complete!")
-    print("Final model:\n\t%s(t) = %s\n"%(target.name,final_model))
-    print("*      *      *     *      *      *")    
+     
+    if verbose:       
+	    print("\n\n*      *      *     *      *      *")    
+	    print("\nModelling complete!")
+	    print("Final model:\n\t%s(t) = %s\n"%(target.name,final_model))
+	    print("*      *      *     *      *      *")    
     
     return pred, r
 
